@@ -1,14 +1,16 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import Client from "./db";
+import { verifyToken } from "./middlewares";
+
 dotenv.config();
 
 const app: express.Application = express();
-const PORT: unknown = process.env.PORT as string;
+const PORT = (process.env.PORT as string) || "";
 
 app.use(express.json());
 
-app.get("/test", async function (req: Request, res: Response) {
+app.get("/test", verifyToken, async function (req: Request, res: Response) {
   const connect = await Client.connect();
 
   const result = await connect.query("SELECT * FROM users");
