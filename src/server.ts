@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import Client from "./db";
-import { verifyToken } from "./middlewares";
+import { verifyToken } from "./middlewares/auth.middlewares";
 
 dotenv.config();
 
