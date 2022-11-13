@@ -14,7 +14,43 @@ const { BCRYPT_PASSWORD, SALT_ROUNDS } = (process.env as {
 }) || { BCRYPT_PASSWORD: "", SALT_ROUNDS: "" };
 
 export class UserStore {
-  async create(u: User): Promise<User[]> {
+  async index(): Promise<User[]> {
+    try {
+      const connect = await Client.connect();
+
+      const sql = "SELECT * FROM users";
+
+      const result = await connect.query(sql);
+
+      const users = result.rows;
+
+      connect.release();
+
+      return users;
+    } catch (err) {
+      throw new Error(`Could not create user: ${err}`);
+    }
+  }
+
+  async show(id: Partial<User["id"]>): Promise<User> {
+    try {
+      const connect = await Client.connect();
+
+      const sql = "SELECT * FROM users WHERE id=($1)";
+
+      const result = await connect.query(sql, [id]);
+
+      const user = result.rows[0];
+
+      connect.release();
+
+      return user;
+    } catch (err) {
+      throw new Error(`Could not create user: ${err}`);
+    }
+  }
+
+  async create(u: User): Promise<User> {
     try {
       const connect = await Client.connect();
 
@@ -39,8 +75,27 @@ export class UserStore {
   }
 
   async auth(fName: string, password: string): Promise<User | null> {
-    const connect = await Client.connect();
+    try {
+      const connect = await Client.connect();
 
-    const sql = "SELECT password FROM users WHERE firstName=($1)";
+      const sql = "SELECT password FROM users WHERE firstName=($1)";
+
+      const result = await connect.query(sql, [fName]);
+
+      if (result.rows.length) {
+        const user: User = result.rows[0];
+
+        const isValidPass = await bcrypt.compare(
+          password + BCRYPT_PASSWORD,
+          user.password
+        );
+
+        if (isValidPass) return user;
+      }
+
+      return null;
+    } catch (err) {
+      throw new Error(`Could not auth user: ${err}`);
+    }
   }
 }
