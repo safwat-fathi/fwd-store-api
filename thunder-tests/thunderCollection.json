@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "96c4de41-5493-4eeb-98ee-86f41a710d30",
+    "colName": "fwd-store-front",
+    "created": "2022-11-08T06:10:12.107Z",
+    "sortNum": 10000,
+    "folders": [],
+    "settings": {
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "849848494|awdawdawdawd"
+      },
+      "tests": []
+    }
+  }
+]

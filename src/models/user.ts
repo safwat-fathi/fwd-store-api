@@ -14,7 +14,7 @@ const { BCRYPT_PASSWORD, SALT_ROUNDS } = (process.env as {
 }) || { BCRYPT_PASSWORD: "", SALT_ROUNDS: "" };
 
 export class UserStore {
-  async create(u: User): Promise<User[]> {
+  async create(u: User): Promise<User> {
     try {
       const connect = await Client.connect();
 
@@ -39,8 +39,61 @@ export class UserStore {
   }
 
   async auth(fName: string, password: string): Promise<User | null> {
-    const connect = await Client.connect();
+    try {
+      const connect = await Client.connect();
 
-    const sql = "SELECT password FROM users WHERE firstName=($1)";
+      const sql = "SELECT password FROM users WHERE firstName=($1)";
+
+      const result = await connect.query(sql, [fName]);
+
+      connect.release();
+
+      if (result.rows.length) {
+        const user: User = result.rows[0];
+
+        const isValidPass = await bcrypt.compare(password, user.password);
+
+        if (isValidPass) return user;
+      }
+
+      return null;
+    } catch (err) {
+      throw new Error(`Could not auth user: ${err}`);
+    }
+  }
+
+  async index(): Promise<User[]> {
+    try {
+      const connect = await Client.connect();
+
+      const sql = "SELECT * FROM users";
+
+      const result = await connect.query(sql);
+
+      connect.release();
+
+      const users: User[] = result.rows;
+
+      return users;
+    } catch (err) {
+      throw new Error(`Could not index users: ${err}`);
+    }
+  }
+
+  async show(id: string): Promise<User> {
+    try {
+      const connect = await Client.connect();
+      const sql = "SELECT * FROM users WHERE id=($1)";
+
+      const result = await connect.query(sql, [id]);
+
+      connect.release();
+
+      const user = result.rows[0];
+
+      return user;
+    } catch (err) {
+      throw new Error(`Could not find user ${id}. Error: ${err}`);
+    }
   }
 }

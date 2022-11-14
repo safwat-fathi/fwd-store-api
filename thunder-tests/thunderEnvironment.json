@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "c3ee1196-de4b-4aac-98e7-f5702a859a19",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -2,
+    "created": "2022-11-08T06:10:46.328Z",
+    "modified": "2022-11-08T06:12:18.534Z",
+    "data": [
+      {
+        "name": "baseUrl",
+        "value": "http://localhost"
+      },
+      {
+        "name": "port",
+        "value": "5000"
+      }
+    ]
+  }
+]

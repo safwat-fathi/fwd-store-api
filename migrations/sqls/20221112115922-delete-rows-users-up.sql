@@ -1,1 +1,1 @@
-DELETE FROM users WHERE name='safwat';
+-- DELETE FROM users WHERE name='safwat';

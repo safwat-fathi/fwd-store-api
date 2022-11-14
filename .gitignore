@@ -1,5 +1,5 @@
 /node_modules
 /dist
-/thunder-tests
+# /thunder-tests
 
 database.json
