@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import Client from "./db";
 import { verifyToken } from "./middlewares/auth.middlewares";
+import routes from "./routes";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.get("/test", verifyToken, async function (req: Request, res: Response) {
   const result = await connect.query("SELECT * FROM users");
   res.json({ users: result.rows[0] });
 });
+
+app.use("/api", routes);
 
 app.listen(PORT, function () {
   console.log(`starting app on port: ${PORT}`);

@@ -50,7 +50,7 @@ export class UserStore {
     }
   }
 
-  async create(u: User): Promise<User> {
+  async create(u: Partial<User>): Promise<User> {
     try {
       const connect = await Client.connect();
 
