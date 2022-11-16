@@ -5,15 +5,15 @@ import { OrderStore } from "../models/order";
 dotenv.config();
 
 export const show = async (req: Request, res: Response) => {
-  const { userId } = req.query;
+  const { user_id } = req.query;
 
-  if (!userId) {
+  if (!user_id) {
     return res.status(422).json({ message: "missing user id" });
   }
 
   const orderStore = new OrderStore();
 
-  const order = await orderStore.show(userId as string);
+  const order = await orderStore.show(user_id as string);
 
   if (order) {
     return res.status(200).json({

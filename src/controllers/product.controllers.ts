@@ -5,15 +5,15 @@ import { ProductStore } from "../models/product";
 dotenv.config();
 
 export const show = async (req: Request, res: Response) => {
-  const { prodId } = req.query;
+  const { product_id } = req.query;
 
-  if (!prodId) {
+  if (!product_id) {
     return res.status(422).json({ message: "missing product id" });
   }
 
   const prodStore = new ProductStore();
 
-  const product = await prodStore.show(prodId as string);
+  const product = await prodStore.show(product_id as string);
 
   if (product) {
     return res.status(200).json({

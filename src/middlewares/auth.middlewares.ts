@@ -20,7 +20,7 @@ export const verifyToken = async (
   try {
     const tokenDecoded = decodeToken(token);
 
-    req.body.userId = tokenDecoded.user.id;
+    req.body.user_id = tokenDecoded.user.id;
     next();
   } catch (err) {
     throw new Error(`${err}`);

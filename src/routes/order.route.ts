@@ -4,6 +4,6 @@ import { verifyToken } from "../middlewares/auth.middlewares";
 
 const orders = Router();
 
-orders.get("/:userId", verifyToken, show);
+orders.get("/:user_id", verifyToken, show);
 
 export default orders;
