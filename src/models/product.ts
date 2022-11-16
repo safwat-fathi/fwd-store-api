@@ -7,7 +7,7 @@ export type Product = {
 };
 
 export class ProductStore {
-  async create(p: Product): Promise<Product> {
+  async create(p: Partial<Product>): Promise<Product> {
     try {
       const connect = await Client.connect();
 
@@ -57,7 +57,7 @@ export class ProductStore {
 
       return user;
     } catch (err) {
-      throw new Error(`Could not find product ${id}. Error: ${err}`);
+      throw new Error(`Could not find product with ID: ${id}. Error: ${err}`);
     }
   }
 }

@@ -55,7 +55,7 @@ export const signup = async (req: Request, res: Response) => {
 };
 
 export const show = async (req: Request, res: Response) => {
-  const { userId } = req.body;
+  const { userId } = req.query;
 
   if (!userId) {
     return res.status(422).json({ message: "missing user id" });
@@ -63,7 +63,7 @@ export const show = async (req: Request, res: Response) => {
 
   const userStore = new UserStore();
 
-  const user = await userStore.show(userId);
+  const user = await userStore.show(userId as string);
 
   if (user) {
     return res.status(200).json({

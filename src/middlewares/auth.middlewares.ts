@@ -1,11 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import { verify, sign } from "jsonwebtoken";
-import { CustomJwtPayload } from "../types/jwt";
+import { decodeToken } from "../helpers/auth";
 
 dotenv.config();
-
-const JWT_SECRET = (process.env.JWT_SECRET as string) || "";
 
 export const verifyToken = async (
   req: Request,
@@ -21,7 +18,7 @@ export const verifyToken = async (
   }
 
   try {
-    const tokenDecoded = verify(token, JWT_SECRET) as CustomJwtPayload;
+    const tokenDecoded = decodeToken(token);
 
     req.body.userId = tokenDecoded.user.id;
     next();
