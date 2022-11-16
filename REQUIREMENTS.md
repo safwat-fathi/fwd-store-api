@@ -14,11 +14,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
 
-### Users
+<!-- ### Users
 
 - Index [token required]
 - Show [token required]
-- Create [token required]
+- Create [token required] -->
 
 ### Orders
 
@@ -27,7 +27,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 
-### Product
+<!-- ### Product
 
 -  id
 - name
@@ -48,4 +48,4 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
-
+ -->
