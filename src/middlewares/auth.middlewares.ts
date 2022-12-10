@@ -19,10 +19,14 @@ export const verifyToken = async (
 
   try {
     const tokenDecoded = decodeToken(token);
+    console.log(
+      "🚀 ~ file: auth.middlewares.ts:22 ~ tokenDecoded",
+      tokenDecoded
+    );
 
     req.body.userId = tokenDecoded.user.id;
     next();
   } catch (err) {
-    throw new Error(`${err}`);
+    return res.status(500).json({ message: `${err}` });
   }
 };

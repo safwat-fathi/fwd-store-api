@@ -9,7 +9,7 @@ export type Order = {
 };
 
 export class OrderStore {
-  async show(user_id: string): Promise<Order> {
+  async showCurrent(user_id: string): Promise<Order> {
     try {
       const connect = await Client.connect();
       const sql = "SELECT * FROM orders WHERE user_id=($1) AND status='active'";

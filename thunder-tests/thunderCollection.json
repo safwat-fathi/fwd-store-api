@@ -4,12 +4,27 @@
     "colName": "fwd-store-front",
     "created": "2022-11-08T06:10:12.107Z",
     "sortNum": 10000,
-    "folders": [],
+    "folders": [
+      {
+        "_id": "2ca2d701-128a-466d-be67-0a35a2c1adab",
+        "name": "products",
+        "containerId": "",
+        "created": "2022-12-10T11:26:26.767Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "b06a4d13-a37e-4025-9c0d-158302ca5f80",
+        "name": "users",
+        "containerId": "",
+        "created": "2022-12-10T12:02:12.111Z",
+        "sortNum": 30000
+      }
+    ],
     "settings": {
       "headers": [],
       "auth": {
         "type": "bearer",
-        "bearer": "849848494|awdawdawdawd"
+        "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzA2NzQzODN9.ujNTw7ZnnS7HiGmAeESf_55sZtZX9BxOvdkij1CPU_A"
       },
       "tests": []
     }

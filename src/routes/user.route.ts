@@ -4,8 +4,8 @@ import { verifyToken } from "../middlewares/auth.middlewares";
 
 const users = Router();
 
-users.post("/login", login);
-users.post("/signup", signup);
-users.get("/:userId", verifyToken, show);
+users.post("/login", verifyToken, login);
+users.post("/signup", verifyToken, signup);
+users.get("/", verifyToken, show);
 
 export default users;

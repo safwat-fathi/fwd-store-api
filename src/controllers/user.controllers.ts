@@ -16,19 +16,19 @@ export const login = async (req: Request, res: Response) => {
 
   const user = await userStore.auth(firstName, password);
 
-  if (user) {
-    const token = generateToken(user);
-
-    return res.status(200).json({
-      message: "Logged in successfully",
-      data: {
-        accessToken: token,
-      },
+  if (!user) {
+    return res.status(400).json({
+      message: "Login failed, please enter correct user name or password",
     });
   }
 
-  return res.status(400).json({
-    message: "Login failed",
+  const token = generateToken(user);
+
+  return res.status(200).json({
+    message: "Logged in successfully",
+    data: {
+      accessToken: token,
+    },
   });
 };
 

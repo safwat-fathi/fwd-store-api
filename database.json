@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "store_api",
+    "user": "safwat",
+    "password": "password"
+  },
+	"prod": {
+		"driver": "pg",
+		"host": {"ENV": "RDS_HOST"},
+		"database": {"ENV": "RDS_DB"},
+    "user": {"ENV": "RDS_USER"},
+    "password": {"ENV": "RDS_PASSWORD"}
+  }
+}

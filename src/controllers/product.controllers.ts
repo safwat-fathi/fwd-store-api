@@ -47,6 +47,12 @@ export const index = async (req: Request, res: Response) => {
 export const create = async (req: Request, res: Response) => {
   const { name, price } = req.body;
 
+  if (!name || !price) {
+    return res.status(422).json({
+      message: "Please provide name and price",
+    });
+  }
+
   const prodStore = new ProductStore();
 
   const newProduct = await prodStore.create({ name, price });
