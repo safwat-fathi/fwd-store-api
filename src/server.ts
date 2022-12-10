@@ -1,6 +1,5 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import dotenv from "dotenv";
-import Client from "./db";
 import routes from "./routes";
 
 dotenv.config();

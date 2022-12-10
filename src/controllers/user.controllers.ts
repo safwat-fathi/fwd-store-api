@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import dotenv from "dotenv";
+import { User } from "../models/user";
 import { UserStore } from "../models/user";
 import { generateToken } from "../helpers/auth";
 
@@ -55,15 +56,15 @@ export const signup = async (req: Request, res: Response) => {
 };
 
 export const show = async (req: Request, res: Response) => {
-  const { userId } = req.query;
+  const { user_id } = req.query;
 
-  if (!userId) {
+  if (!user_id) {
     return res.status(422).json({ message: "missing user id" });
   }
 
   const userStore = new UserStore();
 
-  const user = await userStore.show(userId as string);
+  const user = await userStore.show(user_id as string);
 
   if (user) {
     return res.status(200).json({
@@ -74,5 +75,22 @@ export const show = async (req: Request, res: Response) => {
 
   return res.status(400).json({
     message: "No user found",
+  });
+};
+
+export const index = async (req: Request, res: Response) => {
+  const userStore = new UserStore();
+
+  const users: User[] = await userStore.index();
+
+  if (users.length) {
+    return res.status(200).json({
+      data: users,
+      message: "Users found successfully",
+    });
+  }
+
+  return res.status(400).json({
+    message: "No users found",
   });
 };

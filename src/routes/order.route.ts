@@ -3,6 +3,6 @@ import { showCurrent } from "../controllers/order.controllers";
 
 const orders = Router();
 
-orders.get("/:userId/current", showCurrent);
+orders.get("/:user_id/current", showCurrent);
 
 export default orders;

@@ -24,7 +24,7 @@ export const verifyToken = async (
       tokenDecoded
     );
 
-    req.body.userId = tokenDecoded.user.id;
+    req.body.user_id = tokenDecoded.user.id;
     next();
   } catch (err) {
     return res.status(500).json({ message: `${err}` });

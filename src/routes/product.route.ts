@@ -5,7 +5,7 @@ import { verifyToken } from "../middlewares/auth.middlewares";
 const products = Router();
 
 products.get("/", index);
-products.get("/:prodId", show);
+products.get("/:product_id", show);
 products.post("/create", verifyToken, create);
 
 export default products;
