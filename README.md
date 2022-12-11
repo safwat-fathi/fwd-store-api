@@ -53,6 +53,7 @@ yarn build
 
 PORT=5000
 POSTGRES_DB=store_api
+POSTGRES_TEST_DB=store_api_test
 POSTGRES_USER=safwat
 POSTGRES_PASSWORD=password
 BCRYPT_PASSWORD=45w8sfgrk^%$sdsdww>,,,ld

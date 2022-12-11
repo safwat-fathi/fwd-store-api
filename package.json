@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node src/server.ts",
     "dev": "ts-node-dev --respawn --rs src/server.ts",
-    "test": "jasmine-ts",
+    "test": "ENV=test node_modules/db-migrate/bin/db-migrate --env test up && jasmine-ts && node_modules/db-migrate/bin/db-migrate db:drop test",
     "tsc": "tsc"
   },
-  "author": "Udacity",
+  "author": "safwat fathi",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
