@@ -51,6 +51,7 @@ yarn build
 
 ### Env Vars
 
+ENV=dev
 PORT=5000
 POSTGRES_DB=store_api
 POSTGRES_TEST_DB=store_api_test
