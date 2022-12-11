@@ -43,3 +43,18 @@ yarn build
 - index: /users
 - show: /users?user_id={id}
 - create: /users/create
+
+### DB
+
+- server: 127.0.0.1
+- port: 5432
+
+### Env Vars
+
+PORT=5000
+POSTGRES_DB=store_api
+POSTGRES_USER=safwat
+POSTGRES_PASSWORD=password
+BCRYPT_PASSWORD=45w8sfgrk^%$sdsdww>,,,ld
+SALT_ROUNDS=8
+JWT_SECRET=A-STORE-APP-secretToProtectTokens@3verYrequest
