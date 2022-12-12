@@ -34,63 +34,81 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const signup = async (req: Request, res: Response) => {
-  const { firstName, lastName, password } = req.body;
+  try {
+    const { firstName, lastName, password } = req.body;
 
-  if (!firstName || !lastName || !password) {
-    return res.status(422).json({ message: "missing credentials" });
-  }
+    if (!firstName || !lastName || !password) {
+      return res.status(422).json({ message: "missing credentials" });
+    }
 
-  const userStore = new UserStore();
+    const userStore = new UserStore();
 
-  const newUser = await userStore.create({ firstName, lastName, password });
+    const newUser = await userStore.create({ firstName, lastName, password });
 
-  if (newUser) {
-    return res.status(200).json({
-      message: "Sign up successfully",
+    if (newUser) {
+      return res.status(200).json({
+        message: "Sign up successfully",
+      });
+    }
+
+    return res.status(400).json({
+      message: "Sign up failed",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: String(error),
     });
   }
-
-  return res.status(400).json({
-    message: "Sign up failed",
-  });
 };
 
 export const show = async (req: Request, res: Response) => {
-  const { user_id } = req.query;
+  try {
+    const { user_id } = req.query;
 
-  if (!user_id) {
-    return res.status(422).json({ message: "missing user id" });
-  }
+    if (!user_id) {
+      return res.status(422).json({ message: "missing user id" });
+    }
 
-  const userStore = new UserStore();
+    const userStore = new UserStore();
 
-  const user = await userStore.show(user_id as string);
+    const user = await userStore.show(user_id as string);
 
-  if (user) {
-    return res.status(200).json({
-      data: user,
-      message: "User found successfully",
+    if (user) {
+      return res.status(200).json({
+        data: user,
+        message: "User found successfully",
+      });
+    }
+
+    return res.status(400).json({
+      message: "No user found",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: String(error),
     });
   }
-
-  return res.status(400).json({
-    message: "No user found",
-  });
 };
 
 export const index = async (req: Request, res: Response) => {
-  const userStore = new UserStore();
+  try {
+    const userStore = new UserStore();
 
-  const users: User[] = await userStore.index();
+    const users: User[] = await userStore.index();
 
-  if (users.length) {
-    return res.status(200).json({
-      data: users,
-      message: "Users found successfully",
+    if (users.length) {
+      return res.status(200).json({
+        data: users,
+        message: "Users found successfully",
+      });
+    }
+
+    return res.status(400).json({
+      message: "No users found",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: String(error),
     });
   }
-
-  return res.status(400).json({
-    message: "No users found",
-  });
 };
