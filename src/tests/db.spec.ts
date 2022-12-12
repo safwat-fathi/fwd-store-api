@@ -131,7 +131,13 @@ describe("User Model", () => {
 });
 
 describe("Order Model", () => {
-  it("should have a show current order method", () => {
+  it("should have a showCurrent order method", () => {
     expect(orderStore.showCurrent).toBeDefined();
+  });
+
+  it("showCurrent method should return result", async () => {
+    const result = await orderStore.showCurrent("1");
+
+    expect(result).not.toBeNull();
   });
 });
