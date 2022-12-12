@@ -27,24 +27,29 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 
-### Product
+### Product table
 
-- id
-- name
-- price
+- id - integer
+- name - VARCHAR(60)
+- price - DECIMAL
 - [OPTIONAL] category
 
-### User
+### User table
 
-- id
-- firstName
-- lastName
-- password
+- id - integer
+- firstName - VARCHAR
+- lastName - VARCHAR(60)
+- password - VARCHAR(60)
 
-### Orders
+### Orders table
 
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+- id - integer
+- user_id - bigint
+- status of order (active or complete) - VARCHAR(100)
+
+### Order_products table
+
+- id - integer
+- quantity - integer
+- order_id - bigint
+- product_id - bigint
