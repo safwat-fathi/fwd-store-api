@@ -7,30 +7,36 @@ import { generateToken } from "../helpers/auth";
 dotenv.config();
 
 export const login = async (req: Request, res: Response) => {
-  const { firstName, password } = req.body;
+  try {
+    const { firstName, password } = req.body;
 
-  if (!firstName || !password) {
-    return res.status(422).json({ message: "missing credentials" });
-  }
+    if (!firstName || !password) {
+      return res.status(422).json({ message: "missing credentials" });
+    }
 
-  const userStore = new UserStore();
+    const userStore = new UserStore();
 
-  const user = await userStore.auth(firstName, password);
+    const user = await userStore.auth(firstName, password);
 
-  if (!user) {
-    return res.status(400).json({
-      message: "Login failed, please enter correct user name or password",
+    if (!user) {
+      return res.status(400).json({
+        message: "Login failed, please enter correct user name or password",
+      });
+    }
+
+    const token = generateToken(user);
+
+    return res.status(200).json({
+      message: "Logged in successfully",
+      data: {
+        accessToken: token,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: String(error),
     });
   }
-
-  const token = generateToken(user);
-
-  return res.status(200).json({
-    message: "Logged in successfully",
-    data: {
-      accessToken: token,
-    },
-  });
 };
 
 export const signup = async (req: Request, res: Response) => {
