@@ -14,7 +14,7 @@ export const showCurrent = async (req: Request, res: Response) => {
 
     const orderStore = new OrderStore();
 
-    const order = await orderStore.showCurrent(user_id as string);
+    const order = await orderStore.showCurrent(<string>user_id);
 
     if (order) {
       return res.status(200).json({

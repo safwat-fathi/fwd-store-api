@@ -19,6 +19,7 @@ const { ENV, POSTGRES_DB, POSTGRES_DB_TEST, POSTGRES_USER, POSTGRES_PASSWORD } =
   };
 
 const Client = new Pool({
+  max: 2,
   port: 5432,
   database: ENV === "test" ? POSTGRES_DB_TEST : POSTGRES_DB,
   user: POSTGRES_USER,

@@ -4,7 +4,7 @@ import routes from "./routes";
 
 dotenv.config();
 
-const app: express.Application = express();
+export const app: express.Application = express();
 const PORT = (process.env.PORT as string) || "";
 
 app.use(express.json());
