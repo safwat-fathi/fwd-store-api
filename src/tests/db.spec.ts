@@ -71,11 +71,6 @@ describe("User Model", () => {
       password: "password",
     });
 
-    const hashedPass = await bcrypt.hash(
-      "password" + BCRYPT_PASSWORD,
-      +SALT_ROUNDS
-    );
-
     expect(Object.values(result)).toContain("Ali");
   });
 

@@ -5,16 +5,16 @@ import { CustomJwtPayload } from "../types/jwt";
 
 dotenv.config();
 
-const jwt_secret = (process.env.JWT_SECRET as string) || "";
+const JWT_SECRET = <string>process.env.JWT_SECRET || "";
 
 export const generateToken = (u: Partial<User>) => {
-  const token = sign({ id: u.id, name: u.firstName }, jwt_secret);
+  const token = sign({ id: u.id, name: u.firstName }, JWT_SECRET);
 
   return token;
 };
 
 export const decodeToken = (token: string) => {
-  const tokenDecoded = verify(token, jwt_secret) as CustomJwtPayload;
+  const tokenDecoded = verify(token, JWT_SECRET) as CustomJwtPayload;
 
   return tokenDecoded;
 };

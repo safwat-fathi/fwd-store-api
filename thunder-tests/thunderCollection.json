@@ -31,7 +31,7 @@
       "headers": [],
       "auth": {
         "type": "bearer",
-        "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzA5MzE2Mjh9.1DaNITVgCQsjdlpcn-4PF_L6qFTs2Xm3LnPnxpBxu4A"
+        "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjcwOTM4Njk0fQ.fcXeu09e1L226Y8MOl_TU-OavtMVEvySkSdqXKm160E"
       },
       "tests": []
     }
