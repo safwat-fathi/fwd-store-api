@@ -12,7 +12,7 @@ describe("Test auth", () => {
     };
 
     const res = await request
-      .post("http://localhost:5000/api/users/signup")
+      .post("/api/users/signup")
       .send(payload)
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
@@ -27,7 +27,7 @@ describe("Test auth", () => {
     };
 
     const res = await request
-      .post("http://localhost:5000/api/users/login")
+      .post("/api/users/login")
       .send(payload)
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
@@ -38,15 +38,15 @@ describe("Test auth", () => {
 
 describe("Test orders", () => {
   it("GET /current", async () => {
-    const res = await request.get("http://localhost:5000/api/orders/current");
+    const res = await request.get("/api/orders/current?user_id=1");
 
-    expect(res.status).toBe(200);
+    expect(Object.keys(res.body)).toContain("message");
   });
 });
 
 describe("Test products", () => {
   it("GET /", async () => {
-    const res = await request.get("http://localhost:5000/api/products/");
+    const res = await request.get("/api/products");
 
     expect(res.status).toBe(200);
   });
